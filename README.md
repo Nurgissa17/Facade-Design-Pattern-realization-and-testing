@@ -1,11 +1,8 @@
 ## Reset persisted state
-
 Delete the CSV files inside the `data` folder. The application creates them again automatically.
 
 ## Principle of Least Knowledge
-
 ### Before Facade
-
 Without the Facade, the Client would have to work with all three subsystems directly.
 
 **`MatchmakingFacade.java | 39-41`**
@@ -46,7 +43,6 @@ sessions.save(session);
 This completes **Subsystem C** by confirming the session and saving its state.
 
 Without the Facade, the Client would need to know and coordinate all these subsystem classes itself.
-
 ### After Facade
 
 **`Main.java | 93`**
@@ -55,10 +51,8 @@ Without the Facade, the Client would need to know and coordinate all these subsy
 facade.findMatch(matchId, ratings, latencyMs, failC);
 ```
 
-This shows the **After** case: the Client makes one call to `MatchmakingFacade`, and the Facade coordinates Subsystems A, B, and C.
+This shows the After case: the Client makes one call to MatchmakingFacade, and the facade coordinates Subsystems A, B, and C.
 
 ## Facade vs. Adapter
-
-This project uses **Facade** because the goal is to provide one simple interface for the matchmaking workflow across three subsystems. `MatchmakingFacade` coordinates Party Formation, Server Allocation, and Game Session creation.
-
-**Adapter** is used to make incompatible interfaces work together. The subsystem interfaces in this project are already usable, so the problem is coordination, not interface compatibility. Therefore, **Facade** is the correct pattern.
+This project uses Facade because the goal is to provide one simple interface for the matchmaking workflow across three subsystems. MatchmakingFacade coordinates Party Formation, Server Allocation, and Game Session creation.
+Adapter is used to make incompatible interfaces work together. The subsystem interfaces in this project are already usable, so the problem is coordination, not interface compatibility. Therefore, Facade is the correct pattern.
